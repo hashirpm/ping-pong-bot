@@ -1,5 +1,5 @@
 {
-  "name": "pingpong-bot",
+  "name": "ping-pong-bot",
   "version": "1.0.0",
   "main": "src/bot.ts",
   "scripts": {
