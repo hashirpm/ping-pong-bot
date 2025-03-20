@@ -5,15 +5,15 @@ import { State } from "../interface/state";
 import path from "path";
 
 // Ensure the data folder exists
-function ensureDataFolder() {
-  const dataDir = path.dirname(STATE_FILE);
-  if (!fs.existsSync(dataDir)) {
-    fs.mkdirSync(dataDir, { recursive: true });
-  }
-}
-
+ function ensureDataFolder() {
+   const dataDir = path.dirname(STATE_FILE);
+   if (!fs.existsSync(dataDir)) {
+     fs.mkdirSync(dataDir, { recursive: true });
+   }
+ }
+ 
 // Load state from file or initialize if not exists
-export async function loadStateFromFile() {
+export async function loadState() {
   ensureDataFolder();
   if (!fs.existsSync(STATE_FILE)) {
     const currentBlock = ethers.toNumber(await provider.getBlockNumber());
@@ -22,7 +22,7 @@ export async function loadStateFromFile() {
       lastProcessedBlock: currentBlock - 1,
       processedTxHashes: [],
     };
-    saveStateFromFile(state);
+    saveState(state);
     console.log(`Initialized state with startingBlock: ${currentBlock}`);
     return state;
   }
@@ -31,6 +31,6 @@ export async function loadStateFromFile() {
 }
 
 // Save state to file
-export function saveStateFromFile(state: State): void {
+export function saveState(state: State): void {
   fs.writeFileSync(STATE_FILE, JSON.stringify(state, null, 2));
 }
