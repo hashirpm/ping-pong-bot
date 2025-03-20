@@ -14,7 +14,7 @@ export async function loadState(): Promise<State> {
   const { data, error } = await supabase
     .from("bot_state")
     .select("state")
-    .eq("id", 1)
+    .eq("id", 2)
     .single();
 
   if (error || !data) {
@@ -37,7 +37,7 @@ export async function saveState(state: State): Promise<void> {
   const { error } = await supabase
     .from("bot_state")
     .update({ state, updated_at: new Date().toISOString() })
-    .eq("id", 1);
+    .eq("id", 2);
 
   if (error) {
     throw new Error(`Failed to save state: ${error.message}`);
