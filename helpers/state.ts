@@ -2,6 +2,7 @@ import { ethers } from "ethers";
 import { provider, STATE_FILE } from "../src/config";
 import * as fs from "fs";
 import { State } from "../interface/state";
+
 // Load state from file or initialize if not exists
 export async function loadState() {
   if (!fs.existsSync(STATE_FILE)) {
@@ -19,7 +20,7 @@ export async function loadState() {
   return JSON.parse(data) as State;
 }
 
-// Utility function to save state
+// Save state to file
 export function saveState(state: State): void {
   fs.writeFileSync(STATE_FILE, JSON.stringify(state, null, 2));
 }

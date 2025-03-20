@@ -1,12 +1,11 @@
 import { ethers } from "ethers";
-
 import { loadState, saveState } from "../helpers/state";
 import { contract, provider } from "./config";
 import { withRetry } from "../helpers/error";
 
 // Process a ping event
 async function processPingEvent(event: ethers.EventLog) {
-  console.log("Processing ping event");
+  console.log("Processing ping event...");
   const state = await loadState();
   const txHash = event.transactionHash;
   // Check if the event has already been processed

@@ -1,9 +1,10 @@
 import { ethers } from "ethers";
 import path from "path";
 import { ABI } from "./abi";
-
 import * as dotenv from "dotenv";
+
 dotenv.config();
+
 // Configuration
 const CONTRACT_ADDRESS = "0xdEAe134f366518E4dD1C771d51c2d78E9f0508Ac";
 const ALCHEMY_API_KEY = process.env.ALCHEMY_API_KEY || "";
