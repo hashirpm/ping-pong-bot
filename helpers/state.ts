@@ -2,9 +2,19 @@ import { ethers } from "ethers";
 import { provider, STATE_FILE } from "../src/config";
 import * as fs from "fs";
 import { State } from "../interface/state";
+import path from "path";
+
+// Ensure the data folder exists
+function ensureDataFolder() {
+  const dataDir = path.dirname(STATE_FILE);
+  if (!fs.existsSync(dataDir)) {
+    fs.mkdirSync(dataDir, { recursive: true });
+  }
+}
 
 // Load state from file or initialize if not exists
 export async function loadState() {
+  ensureDataFolder();
   if (!fs.existsSync(STATE_FILE)) {
     const currentBlock = ethers.toNumber(await provider.getBlockNumber());
     const state: State = {
