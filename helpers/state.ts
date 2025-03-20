@@ -13,7 +13,7 @@ function ensureDataFolder() {
 }
 
 // Load state from file or initialize if not exists
-export async function loadState() {
+export async function loadStateFromFile() {
   ensureDataFolder();
   if (!fs.existsSync(STATE_FILE)) {
     const currentBlock = ethers.toNumber(await provider.getBlockNumber());
@@ -22,7 +22,7 @@ export async function loadState() {
       lastProcessedBlock: currentBlock - 1,
       processedTxHashes: [],
     };
-    saveState(state);
+    saveStateFromFile(state);
     console.log(`Initialized state with startingBlock: ${currentBlock}`);
     return state;
   }
@@ -31,6 +31,6 @@ export async function loadState() {
 }
 
 // Save state to file
-export function saveState(state: State): void {
+export function saveStateFromFile(state: State): void {
   fs.writeFileSync(STATE_FILE, JSON.stringify(state, null, 2));
 }
