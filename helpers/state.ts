@@ -1,5 +1,5 @@
 import { ethers } from "ethers";
-import { provider, STATE_FILE } from "../config";
+import { provider, STATE_FILE } from "../src/config";
 import * as fs from "fs";
 import { State } from "../interface/state";
 // Load state from file or initialize if not exists

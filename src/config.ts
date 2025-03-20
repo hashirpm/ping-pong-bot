@@ -14,6 +14,5 @@ export const provider = new ethers.AlchemyProvider("sepolia", ALCHEMY_API_KEY);
 export const wallet = new ethers.Wallet(PRIVATE_KEY, provider);
 export const contract = new ethers.Contract(CONTRACT_ADDRESS, ABI, wallet);
 
-
 // Path to state file
-export const STATE_FILE = path.join(__dirname, "state.json");
+export const STATE_FILE = path.join(__dirname, "../data/state.json");
