@@ -6,7 +6,7 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 // Configuration
-const CONTRACT_ADDRESS = "0xdEAe134f366518E4dD1C771d51c2d78E9f0508Ac";
+const CONTRACT_ADDRESS = "0xa7f42ff7433cb268dd7d59be62b00c30ded28d3d";
 const ALCHEMY_API_KEY = process.env.ALCHEMY_API_KEY || "";
 const PRIVATE_KEY = process.env.PRIVATE_KEY || "";
 
