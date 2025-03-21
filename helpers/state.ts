@@ -12,7 +12,7 @@ import path from "path";
    }
  }
  
-// Load state from file or initialize if not exists
+// Load state from file or create if not exists
 export async function loadState() {
   ensureDataFolder();
   if (!fs.existsSync(STATE_FILE)) {
@@ -31,6 +31,6 @@ export async function loadState() {
 }
 
 // Save state to file
-export function saveState(state: State): void {
-  fs.writeFileSync(STATE_FILE, JSON.stringify(state, null, 2));
+export async function saveState(state: State) {
+   fs.writeFileSync(STATE_FILE, JSON.stringify(state, null, 2));
 }

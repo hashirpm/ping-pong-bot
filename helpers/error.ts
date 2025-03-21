@@ -2,7 +2,7 @@
 export async function withRetry<T>(
   fn: () => Promise<T>,
   maxAttempts = 5,
-  delayMs = 1000
+  delayMs = 2000
 ): Promise<T> {
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
     try {
