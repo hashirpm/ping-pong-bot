@@ -1,5 +1,5 @@
 import { ethers } from "ethers";
-import { loadState, saveState } from "../helpers/supabase";
+import { loadState, saveState } from "../helpers/state";
 import { contract, provider } from "./config";
 import { withRetry } from "../helpers/error";
 
