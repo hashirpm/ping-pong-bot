@@ -4,5 +4,6 @@ A bot that listens for `Ping()` events on the Sepolia testnet and responds with 
 
 ## Setup
 1. Install dependencies: `npm install`
-2. Configure `.env` with `ALCHEMY_API_KEY` and `PRIVATE_KEY`
-3. Run the bot: `npx ts-node src/bot.ts`
+2. Create `.env` file by creating a copy of `.env.example` file
+3. Add value of environment variables in `.env` file
+4. Run the bot: `npm start`
