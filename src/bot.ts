@@ -16,11 +16,13 @@ async function processPingEvent(event: ethers.EventLog, state: State) {
     return;
   }
   try {
-    console.log(`Processing ping event - ${txHash}`);
-    const tx = await withRetry(() => contract.pong(txHash));
+    const feeData = await provider.getFeeData();
+    const gasPrice = feeData.gasPrice;
+    const tx = await withRetry(() => contract.pong(txHash, { gasPrice }));
     await withRetry(() => tx.wait());
     console.log(`Pong sent for ${txHash}, Tx Hash of Pong: ${tx.hash}`);
     state.processedTxHashes.push(txHash);
+    await saveState(state);
   } catch (error: any) {
     console.error(
       `Error in processing the ping event, Tx- ${txHash}: ${error.message}`
@@ -41,11 +43,12 @@ async function processBlock(blockNumber: number, state: State) {
       await processPingEvent(event as ethers.EventLog, state);
     }
     state.lastProcessedBlock = blockNumber;
-    await saveState(state);
     console.log(`Finished processing the block - ${blockNumber}`);
     await new Promise((resolve) => setTimeout(resolve, 1000));
   } catch (error: any) {
-    console.error(`Error in processing block - ${blockNumber}: ${error.message}`);
+    console.error(
+      `Error in processing block - ${blockNumber}: ${error.message}`
+    );
   }
 }
 
